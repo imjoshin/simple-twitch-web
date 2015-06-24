@@ -1,0 +1,94 @@
+body {
+
+}
+#header {
+  height:100px;
+  background-color: #000;
+  color: #fff;
+  z-index:10;
+}
+#content {
+  padding-bottom: 50px;
+}
+#games {
+  margin-top: 25px;
+}
+.gameInfo {
+  text-align: center;
+  background-color: rgba(255, 255, 255, .7);
+  position: relative;
+  height: 45px;
+  top: 45px;
+}
+.game img {
+  display: block;
+  margin: auto;
+}
+.game :hover{
+  cursor: pointer;
+}
+
+#stream-wrapper {
+  display: none;
+
+}
+#stream-wrapper .cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  opacity: 0.2;
+  width: 100%;
+  height: 100%;
+}
+#stream-wrapper .image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: top center;
+
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: blur(10px);
+}
+#streams {
+  display: none;
+}
+.streamInfo {
+  text-align: center;
+  background-color: rgba(255, 255, 255, .7);
+  position: relative;
+  height: 45px;
+  top: 45px;
+}
+.stream img {
+  display: block;
+  margin: auto;
+}
+.stream :hover{
+  cursor: pointer;
+}
+
+a {
+  color: #000;
+}
+a :hover {
+  border: 3px solid black;
+  color: #333;
+}
+
+.light-shadow {
+  -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.43);
+  -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.43);
+  box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.43);
+}
+.shadow {
+  -webkit-box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.62);
+  -moz-box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.62);
+  box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.62);
+}
