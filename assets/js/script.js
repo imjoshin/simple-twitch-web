@@ -1,25 +1,62 @@
 $(document).on("ready", function(){
   
-  $("#games").html(ajax({"script": "getGames"}));
-
-  $(".game").on("click", function(){
-    $("#stream-wrapper .image").css("background-image", "url(" + $(this).data("img") + ")");
-    console.log("Set background image to " + $(this).data("img")); 
-    $("#games").slideUp(600, function(){
-      $("#stream-wrapper").slideDown(4000);
+  /*
+  if(window.location.hash){
+    alert("in hash");
+    if(window.location.hash.substring(1, 5) == "get-"){
+      alert("in get");
       getStreams();
-    });
-  });
+    }
+  }else{
+    initialize();
+  }
+  */
+  initialize();
+
+  function initialize(){
+    getGames();
+  }
 
   $(window).scroll(function(){
     var scrolled = $(window).scrollTop();
     $("#stream-wrapper .image").css("background-position", "center " + -(scrolled * 0.15) + "px");
   });
 
+  $(".game").on("click", function(){
+    var t = this;
+    $("#title").fadeOut(500, function(){
+      $("#title").text($(t).data("title")).fadeIn(500);
+    });
+    $("#stream-wrapper .image").css("background-image", "url(" + $(this).data("img") + ")");
+    console.log("Set background image to " + $(this).data("img")); 
+    $("#games").slideUp(600, function(){
+      $("#stream-wrapper").slideDown(1000);
+      getStreams();
+    });
+  });
+
+  $("a").on("click", function(){
+    console.log("a clicked");
+  });
+  $(".stream").on("click", function(){
+    console.log("clicked stream: " + $(this).id);
+    $("#stream-wrapper").slideUp(600, function(){
+      getVideo();
+    });
+  });
+
+  function getGames(){
+    $("#games").html(ajax({"script": "getGames"}));
+  }
+
   function getStreams(){
-    $("#streams").html(ajax({"script": "getStreams", "game": window.location.hash}));
-    $("#streams").fadeIn(4000);
+    $("#streams").html(ajax({"script": "getStreams", "game": window.location.hash.substring(5)}));
+    $("#streams").fadeIn(2500);
     $("body").animate({backgroundColor: "#000000"}, 1000);
+  }
+
+  function getVideo(){
+    $("#video").html(ajax({"script": "getVideo", "user": window.location.hash.substring(1)}));
   }
 
   function ajax(data){
