@@ -22,7 +22,7 @@ $(document).on("ready", function(){
     $("#stream-wrapper .image").css("background-position", "center " + -(scrolled * 0.15) + "px");
   });
 
-  $(".game").on("click", function(){
+  $(document).on("click", ".game", function(){
     var t = this;
     $("#title").fadeOut(500, function(){
       $("#title").text($(t).data("title")).fadeIn(500);
@@ -35,11 +35,8 @@ $(document).on("ready", function(){
     });
   });
 
-  $("a").on("click", function(){
-    console.log("a clicked");
-  });
-  $(".stream").on("click", function(){
-    console.log("clicked stream: " + $(this).id);
+  $(document).on("click", ".stream", function(){
+    console.log("clicked stream: " + $(this).attr("href"));
     $("#stream-wrapper").slideUp(600, function(){
       getVideo();
     });
@@ -56,7 +53,7 @@ $(document).on("ready", function(){
   }
 
   function getVideo(){
-    $("#video").html(ajax({"script": "getVideo", "user": window.location.hash.substring(1)}));
+    $("#video").html(ajax({"script": "getVideo", "user": window.location.hash.substring(1)})).fadeIn(1000);
   }
 
   function ajax(data){
