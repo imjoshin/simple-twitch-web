@@ -10,10 +10,11 @@ body {
   font-size: 40px;
 }
 #content {
-  padding-bottom: 50px;
+
 }
 #games {
   margin-top: 25px;
+  margin-bottom: 25px;
 }
 .gameInfo {
   text-align: center;
@@ -32,7 +33,7 @@ body {
 
 #stream-wrapper {
   display: none;
-
+  margin-bottom: 25px;
 }
 #stream-wrapper .cover {
   position: fixed;

@@ -1,16 +1,18 @@
 $(document).on("ready", function(){
   
-  /*
+  
   if(window.location.hash){
-    alert("in hash");
     if(window.location.hash.substring(1, 5) == "get-"){
-      alert("in get");
-      getStreams();
+      initialize();
+      //TODO make this load game page
+      //getStreams();
+    }else{
+      getVideo();
     }
   }else{
     initialize();
   }
-  */
+  
   initialize();
 
   function initialize(){
@@ -20,6 +22,14 @@ $(document).on("ready", function(){
   $(window).scroll(function(){
     var scrolled = $(window).scrollTop();
     $("#stream-wrapper .image").css("background-position", "center " + -(scrolled * 0.15) + "px");
+  });
+
+  $(window).on("resize", function(){
+    if($("#video").is(":visible")){
+      $("iframe")[0].setAttribute("height", $(window).height());
+      $("iframe")[0].setAttribute("width", $(window).width());
+    }
+
   });
 
   $(document).on("click", ".game", function(){
@@ -53,6 +63,8 @@ $(document).on("ready", function(){
   }
 
   function getVideo(){
+    $("#games").hide();
+    $("#header").slideUp(1000);
     $("#video").html(ajax({"script": "getVideo", "user": window.location.hash.substring(1)})).fadeIn(1000);
   }
 
