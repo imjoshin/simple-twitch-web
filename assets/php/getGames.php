@@ -15,7 +15,7 @@
   $classes = "columns large-3 medium-4 small-6";
   foreach($games as $game){
     $HTML .= "
-      <a class='game' href='#get-" . str_replace($sym, $symEquiv, $game["game"]["name"]) . "' data-title='" . $game["game"]["name"] . "' data-img='" . $game["game"]["box"]["large"] . "'>
+      <a class='game' href='#g-" . str_replace($sym, $symEquiv, $game["game"]["name"]) . "' data-title='" . $game["game"]["name"] . "' data-img='" . $game["game"]["box"]["large"] . "'>
       <div class='$classes'>
         <div class='gameInfo'>
           Viewers: " . $game["viewers"] . "<br/>

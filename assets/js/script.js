@@ -1,23 +1,29 @@
 $(document).on("ready", function(){
   
-  
-  if(window.location.hash){
-    if(window.location.hash.substring(1, 5) == "get-"){
-      initialize();
-      //TODO make this load game page
-      //getStreams();
-    }else{
-      getVideo();
-    }
-  }else{
-    initialize();
-  }
-  
-  initialize();
+  load();
 
-  function initialize(){
-    getGames();
+  function load(){
+    if(window.location.hash){
+      if(window.location.hash.substring(1, 3) == "g-"){
+        $("#games").hide();
+        $("#stream-wrapper").show();
+        $("#video").hide();
+        getStreams();
+      }else if(window.location.hash.substring(1, 3) == "u-"){
+        $("#games").hide();
+        $("#stream-wrapper").hide();
+        $("#video").show();
+        getVideo();
+      }
+    }else{
+      $("#games").show();
+      $("#stream-wrapper").hide();
+      $("#video").hide();
+      getGames();
+    }
   }
+
+  $(window).on('hashchange', load);
 
   $(window).scroll(function(){
     var scrolled = $(window).scrollTop();
@@ -25,11 +31,11 @@ $(document).on("ready", function(){
   });
 
   $(window).on("resize", function(){
+    $("#cover").css({"height" : $(window).height() - 27 + "px", "width" : $(window).width() - 120 + "px"});
     if($("#video").is(":visible")){
       $("iframe")[0].setAttribute("height", $(window).height());
       $("iframe")[0].setAttribute("width", $(window).width());
     }
-
   });
 
   $(document).on("click", ".game", function(){
@@ -41,14 +47,15 @@ $(document).on("ready", function(){
     console.log("Set background image to " + $(this).data("img")); 
     $("#games").slideUp(600, function(){
       $("#stream-wrapper").slideDown(1000);
-      getStreams();
+      //getStreams();
     });
   });
 
   $(document).on("click", ".stream", function(){
     console.log("clicked stream: " + $(this).attr("href"));
     $("#stream-wrapper").slideUp(600, function(){
-      getVideo();
+      $("#video").slideDown(1000);
+      //getVideo();
     });
   });
 
@@ -57,7 +64,7 @@ $(document).on("ready", function(){
   }
 
   function getStreams(){
-    $("#streams").html(ajax({"script": "getStreams", "game": window.location.hash.substring(5)}));
+    $("#streams").html(ajax({"script": "getStreams", "game": window.location.hash.substring(3)}));
     $("#streams").fadeIn(2500);
     $("body").animate({backgroundColor: "#000000"}, 1000);
   }
@@ -65,7 +72,7 @@ $(document).on("ready", function(){
   function getVideo(){
     $("#games").hide();
     $("#header").slideUp(1000);
-    $("#video").html(ajax({"script": "getVideo", "user": window.location.hash.substring(1)})).fadeIn(1000);
+    $("#player").html(ajax({"script": "getVideo", "user": window.location.hash.substring(3)})).fadeIn(1000);
   }
 
   function ajax(data){

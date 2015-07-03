@@ -19,7 +19,7 @@
   $classes = "columns large-4 medium-6 small-6";
   foreach($streams as $stream){
     $HTML .= "
-      <a class='stream' href='#" . $stream["channel"]["name"] . "'>
+      <a class='stream' href='#u-" . $stream["channel"]["name"] . "'>
       <div class='$classes'>
         <div class='streamInfo'>
           <b>" . $stream["channel"]["name"] . "</b><br/>
